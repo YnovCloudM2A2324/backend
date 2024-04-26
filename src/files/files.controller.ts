@@ -8,12 +8,12 @@ import { Response } from 'express';
 @Controller('files')
 export class FilesController {
   
-  private readonly uploadPath = './src/storage';
+  private readonly uploadPath = './storage';
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file', {
     storage: diskStorage({
-      destination: './src/storage',
+      destination: './storage',
       filename: (req, file, callback) => {
         const filename: string = path.parse(file.originalname).name.replace(/\s/g, '') + new Date().toISOString();
         const extension: string = path.parse(file.originalname).ext;
